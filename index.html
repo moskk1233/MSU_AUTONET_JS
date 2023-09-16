@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>MSU-Net Auto Connect</title>
+		<meta
+			http-equiv="Content-Security-Policy"
+			content="script-src 'self' 'unsafe-inline';"
+		/>
+		<!-- Icon -->
+		<link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+
+		<!-- Script -->
+		<script src="src/js/script.js"></script>
+		<script src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+
+		<!-- Stylesheet -->
+		<link rel="stylesheet" href="src/css/style.css" />
+		<link rel="stylesheet" href="src/css/noSelect.css" />
+		<link
+			rel="stylesheet"
+			href="node_modules/sweetalert2/dist/sweetalert2.min.css"
+		/>
+	</head>
+	<body onload="load()">
+		<div class="w-[90%] mx-auto mt-10">
+			<div class="flex justify-center content-center">
+				<img
+					src="./assets/images/authen.png"
+					alt="Authen"
+					class="object-cover w-[30vw]"
+				/>
+			</div>
+			<div class="mt-36 flex justify-center">
+				<form
+					class="block"
+					action="http://10.99.92.1/webAuth"
+					method="post"
+					onsubmit="return login()"
+				>
+					<label for="username" class="block text-[20px]"
+						>Username</label
+					>
+					<input
+						id="username"
+						name="username"
+						type="text"
+						class="block w-[400px] h-[50px] rounded-lg border border-black mb-[50px] text-center"
+						placeholder="กรอกรหัสนิสิต 11 หลัก"
+						maxlength="11"
+						required
+					/>
+					<label for="password" class="block text-[20px]"
+						>Password</label
+					>
+					<input
+						id="password"
+						name="password"
+						type="password"
+						class="block w-[400px] h-[50px] rounded-lg border border-black mb-[30px] text-center"
+						placeholder="กรอกรหัสผ่าน"
+						required
+					/>
+					<input type="hidden" name="pwd" id="pwd" />
+					<input
+						type="hidden"
+						id="secret"
+						name="secret"
+						value="true"
+					/>
+					<div class="flex justify-center">
+						<button
+							id="loginBtn"
+							class="border p-3 px-5 rounded-md bg-[#E5C268] shadow-lg hover:bg-white"
+							onclick=""
+						>
+							เข้าสู่ระบบ
+						</button>
+					</div>
+				</form>
+			</div>
+			<div class="flex justify-center mt-10">
+				<button class="text-[#3B24C7]" id="logoutBtn">
+					<a
+						href="http://10.99.92.1/logout/"
+						class="hover:text-[#e5c268]"
+						>ออกจากระบบ</a
+					>
+				</button>
+			</div>
+		</div>
+	</body>
+</html>
