@@ -1,6 +1,7 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('node:path');
-const Swal = require('sweetalert2');
+
+const ipc = ipcMain;
 
 function createWindow() {
 	const win = new BrowserWindow({
@@ -8,13 +9,24 @@ function createWindow() {
 		height: 800,
 		webPreferences: {
 			preload: path.join(__dirname, 'preload.js'),
+			nodeIntegration: true,
+			contextIsolation: false,
 		},
 		icon: path.join(__dirname, 'favicon.ico'),
 		resizable: false,
+		frame: false,
 	});
 
 	win.setMenu(null);
 	win.loadFile('index.html');
+
+	ipc.on('closeApp', () => {
+		win.close();
+	});
+
+	ipc.on('minimizeApp', () => {
+		win.minimize();
+	});
 }
 
 app.whenReady().then(() => {
