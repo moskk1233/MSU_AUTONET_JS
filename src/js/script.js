@@ -16,16 +16,26 @@ function login() {
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded',
 		},
-	}).then((data) => {
-		saveAccount();
-		Swal.fire({
-			title: 'Success',
-			text: 'กรุณารอซักครู่ระบบกำลังล็อกอินให้คุณหากชื่อผู้ใช้และรหัสผ่านถูกต้อง',
-			icon: 'success',
-			timer: 5000,
-			timerProgressBar: true,
+	})
+		.then((data) => {
+			saveAccount();
+			Swal.fire({
+				title: 'Success',
+				text: 'กรุณารอซักครู่ระบบกำลังล็อกอินให้คุณหากชื่อผู้ใช้และรหัสผ่านถูกต้อง',
+				icon: 'success',
+				timer: 5000,
+				timerProgressBar: true,
+			});
+		})
+		.catch((err) => {
+			Swal.fire({
+				title: 'Error',
+				text: 'กรุณาเชื่อมต่ออินเทอร์เน็ตให้เรียบร้อยก่อนจึงจะล็อกอินได้',
+				icon: 'error',
+				timer: 5000,
+				timerProgressBar: true,
+			});
 		});
-	});
 }
 
 function saveAccount() {
