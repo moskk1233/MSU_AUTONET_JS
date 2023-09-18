@@ -1,6 +1,6 @@
 {
 	"name": "msuautonet",
-	"version": "4.1.1",
+	"version": "4.1.2",
 	"description": "ใช้ในการล็อกอินเน็ตในมหาวิทยาลัยมหาสารคาม",
 	"main": "src/index.js",
 	"type": "commonjs",
