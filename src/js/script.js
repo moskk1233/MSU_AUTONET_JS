@@ -1,13 +1,30 @@
+const axios = require('axios');
+const qs = require('node:querystring');
+
 function login() {
-	saveAccount();
 	const username = document.querySelector('#username').value;
 	const password = document.querySelector('#password').value;
-	document.querySelector('#pwd').value = password;
-	Swal.fire({
-		title: 'Success',
-		text: 'กรุณารอซักครู่ระบบกำลังล็อกอินให้คุณหากชื่อผู้ใช้และรหัสผ่านถูกต้องหน้าเว็บจะถูกเปลี่ยน',
-		icon: 'success',
-		timer: 5000,
+	axios({
+		method: 'POST',
+		url: 'http://10.99.92.1/webAuth/',
+		data: qs.stringify({
+			username: username,
+			password: password,
+			pwd: password,
+			secret: true,
+		}),
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded',
+		},
+	}).then((data) => {
+		saveAccount();
+		Swal.fire({
+			title: 'Success',
+			text: 'กรุณารอซักครู่ระบบกำลังล็อกอินให้คุณหากชื่อผู้ใช้และรหัสผ่านถูกต้อง',
+			icon: 'success',
+			timer: 5000,
+			timerProgressBar: true,
+		});
 	});
 }
 

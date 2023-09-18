@@ -1,7 +1,6 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow } = require('electron');
 const path = require('node:path');
-
-const ipc = ipcMain;
+const { version } = require('../package.json');
 
 function createWindow() {
 	const win = new BrowserWindow({
@@ -14,19 +13,12 @@ function createWindow() {
 		},
 		icon: path.join(__dirname, 'favicon.ico'),
 		resizable: false,
-		frame: false,
+
+		title: `MSU-Net auto connect ${version}`,
 	});
 
 	win.setMenu(null);
 	win.loadFile('index.html');
-
-	ipc.on('closeApp', () => {
-		win.close();
-	});
-
-	ipc.on('minimizeApp', () => {
-		win.minimize();
-	});
 }
 
 app.whenReady().then(() => {
